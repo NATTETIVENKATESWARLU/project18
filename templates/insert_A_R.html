@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>A_R insert data </h1>
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <select name="ba" id="ba">
+                {% for v in ba %}
+                <option value="{{v}}">{{v.topic_name}}</option>
+                {% endfor %}
+            </select><br><br>
+
+
+            <select name="l" id="l">
+                {% for i in l %}
+                <option value="{{i}}">{{i.name}}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <select name="l" id="l">
+                {% for i in l %}
+                <option value="{{i}}">{{i.url}}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="date">date</label>
+            <input type="date" name="date" id="date">
+
+            <input type="submit" value="submit">
+        </form>
+    </center>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>webpage insert data </h1>
+        <form method="POST">
+
+            {% csrf_token %}
+            <select name="l" id="l">
+                {% for i in l %}
+                <option value="{{i}}">{{i.topic_name}}</option>
+                {% endfor %}
+            </select><br><br>
+            <label for="na">name</label>
+            <input type="text" name="na" id="na"><br><br>
+            <label for="url">url</label>
+            <input type="url" name="url" id="url"><br><br>
+            <input type="submit" value="submit">
+        </form>
+    </center>
+</body>
+</html>
