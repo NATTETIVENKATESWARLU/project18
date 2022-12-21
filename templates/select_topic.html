@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>select data</h1>
+        <form  method="post">
+            {% csrf_token %}
+            <select name="v" id="v" multiple>
+                {% for i in v%}
+                <option value="{{i}}">{{i.topic_name}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="submit">
+        </form>
+    </center>
+</body>
+</html>

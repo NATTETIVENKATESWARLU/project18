@@ -40,16 +40,16 @@ def insert_webpage(request):
 
 
 def insert_A_R(request):
-    ba=Topic.objects.all()
-    l=webpage.objects.all()
-    d={'ba':ba,'l':l}
+    l=Topic.objects.all()
+    d={'l':l}
     if request.method=='POST':
-        ta=request.POST['ba']
-        na=request.POST['l']
+        ta=request.POST['l']
+        na=request.POST['b']
+        ba=request.POST['a']
         da=request.POST['date']
         t=Topic.objects.get_or_create(topic_name=ta)[0]
         t.save()
-        w=webpage.objects.get_or_create(topic_name=t,name=na,url=na)[0]
+        w=webpage.objects.get_or_create(topic_name=t,name=na,url=ba)[0]
         w.save()
         dn=Access_Recorde.objects.get_or_create(name=w,date=da)[0]
         dn.save()
@@ -87,4 +87,18 @@ def delete_webpage(request):
         return HttpResponse("yes submited")
 
     return render(request,'delete_webpage.html',d) 
+
+
+def select_topic(request):
+    v=Topic.objects.all()
+    d={'v':v}
+    if request.method=='POST':
+        ta=request.POST.getlist('v')
+        web=webpage.objects.none()
+        for i in ta:
+            web=web|webpage.objects.filter(topic_name=i)
+        d={'web':web}
+        return render(request,'display.html',d)
+
+    return render(request,'select_topic.html',d)
     
